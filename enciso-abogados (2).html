@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enciso Abogados · Derecho Laboral México</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --dark: #0d0d0d;
+      --blue: #1a4fd6;
+      --blue-light: #3d6fea;
+      --red: #d62828;
+      --accent: #f5a623;
+      --gray: #6b6b6b;
+      --border: #e0dcd4;
+      --card: #ffffff;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 6%;
+      background: rgba(247,245,240,0.93);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      animation: navIn 0.7s ease both;
+    }
+    @keyframes navIn { from{opacity:0;transform:translateY(-100%)} to{opacity:1;transform:translateY(0)} }
+    .logo { display:flex; align-items:center; text-decoration:none; }
+    .logo img { height:64px; width:auto; display:block; filter:brightness(0); }
+    .nav-menu { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-menu a { font-size:0.83rem; font-weight:500; color:var(--gray); text-decoration:none; transition:color 0.25s; }
+    .nav-menu a:hover { color:var(--blue); }
+    .nav-btn { background:var(--dark)!important; color:#fff!important; padding:0.6rem 1.5rem; border-radius:100px; font-weight:600!important; font-size:0.82rem!important; transition:background 0.3s!important; }
+    .nav-btn:hover { background:var(--blue)!important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .hamburger span { width:24px; height:2px; background:var(--dark); border-radius:2px; display:block; }
+
+    /* HERO */
+    .hero {
+      min-height:100vh; padding:9rem 6% 5rem;
+      display:grid; grid-template-columns:1.15fr 0.85fr; gap:4rem; align-items:center;
+      position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background-image: linear-gradient(var(--border) 1px,transparent 1px), linear-gradient(90deg,var(--border) 1px,transparent 1px);
+      background-size:64px 64px; opacity:0.5; pointer-events:none;
+    }
+    .blob { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+    .blob-1 { width:520px; height:520px; background:rgba(26,79,214,0.09); top:-120px; right:-80px; animation:blobA 9s ease-in-out infinite; }
+    .blob-2 { width:380px; height:380px; background:rgba(214,40,40,0.07); bottom:0; left:-60px; animation:blobB 11s ease-in-out infinite; }
+    .blob-3 { width:220px; height:220px; background:rgba(245,166,35,0.1); top:50%; left:45%; animation:blobC 7s ease-in-out infinite; }
+    @keyframes blobA { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-25px,20px)} }
+    @keyframes blobB { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-25px)} }
+    @keyframes blobC { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(10px,10px) scale(1.08)} }
+    .hero-left { position:relative; z-index:2; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      background:var(--dark); color:var(--accent);
+      font-size:0.7rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      padding:0.45rem 1.1rem; border-radius:100px; margin-bottom:2rem;
+      animation:fadeUp 0.8s 0.1s ease both;
+    }
+    .badge-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); animation:blink 1.8s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+    .hero h1 {
+      font-family:'Syne',sans-serif; font-size:clamp(2.6rem,5.2vw,4.6rem); font-weight:800;
+      line-height:1.0; letter-spacing:-2.5px; animation:fadeUp 0.8s 0.25s ease both;
+    }
+    .h1-blue { color:var(--blue); display:block; }
+    .h1-red  { color:var(--red);  display:block; }
+    .hero-desc { font-size:1.05rem; line-height:1.85; color:var(--gray); max-width:530px; margin:2rem 0 2.8rem; animation:fadeUp 0.8s 0.4s ease both; }
+    .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp 0.8s 0.55s ease both; }
+    .btn-primary {
+      background:var(--blue); color:#fff; padding:1rem 2.2rem; border-radius:100px;
+      font-weight:600; font-size:0.9rem; border:none; cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:0.5rem;
+      box-shadow:0 5px 25px rgba(26,79,214,0.3);
+      transition:background 0.3s,transform 0.25s,box-shadow 0.3s;
+    }
+    .btn-primary:hover { background:var(--blue-light); transform:translateY(-3px); box-shadow:0 10px 35px rgba(26,79,214,0.4); }
+    .btn-outline {
+      background:transparent; color:var(--dark); padding:1rem 2.2rem; border-radius:100px;
+      font-weight:500; font-size:0.9rem; border:1.5px solid var(--border); cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:0.5rem; transition:border-color 0.3s,color 0.3s;
+    }
+    .btn-outline:hover { border-color:var(--dark); }
+    .hero-stats { display:flex; gap:0; margin-top:3.5rem; padding-top:2.5rem; border-top:1px solid var(--border); animation:fadeUp 0.8s 0.7s ease both; }
+    .stat-item { flex:1; padding:0 2rem; border-right:1px solid var(--border); }
+    .stat-item:first-child { padding-left:0; }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Syne',sans-serif; font-size:2.3rem; font-weight:800; letter-spacing:-1.5px; line-height:1; color:var(--dark); }
+    .stat-num span { color:var(--blue); }
+    .stat-text { font-size:0.78rem; color:var(--gray); margin-top:0.4rem; line-height:1.4; }
+    .hero-right { position:relative; z-index:2; animation:fadeUp 0.8s 0.45s ease both; }
+    .hcard { background:var(--card); border:1.5px solid var(--border); border-radius:18px; padding:2rem; box-shadow:0 6px 35px rgba(0,0,0,0.07); margin-bottom:1.2rem; transition:transform 0.3s,box-shadow 0.3s; }
+    .hcard:hover { transform:translateY(-4px); box-shadow:0 14px 45px rgba(0,0,0,0.11); }
+    .hcard-header { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+    .hcard-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.35rem; flex-shrink:0; }
+    .ic-blue { background:rgba(26,79,214,0.1); }
+    .hcard-title { font-family:'Syne',sans-serif; font-size:0.97rem; font-weight:700; }
+    .hcard-body { font-size:0.83rem; color:var(--gray); line-height:1.7; }
+    .hcard-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.2rem; }
+    .htag { background:var(--bg); border:1px solid var(--border); color:var(--gray); font-size:0.7rem; font-weight:500; padding:0.28rem 0.75rem; border-radius:100px; }
+    .hcard-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .hmini { background:var(--card); border:1.5px solid var(--border); border-radius:14px; padding:1.3rem; text-align:center; transition:border-color 0.3s; }
+    .hmini:hover { border-color:var(--blue); }
+    .hmini-icon { font-size:1.6rem; margin-bottom:0.5rem; display:block; }
+    .hmini-text { font-size:0.73rem; color:var(--gray); line-height:1.45; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+    /* SECTIONS */
+    section { padding:7rem 6%; }
+    .eyebrow { display:inline-flex; align-items:center; gap:0.6rem; font-size:0.72rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--blue); margin-bottom:1.2rem; }
+    .eyebrow::before { content:''; width:24px; height:2px; background:currentColor; border-radius:2px; }
+    .s-title { font-family:'Syne',sans-serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:800; letter-spacing:-1.2px; line-height:1.1; }
+    .s-title em { font-style:normal; color:var(--blue); }
+    .s-sub { color:var(--gray); font-size:1rem; line-height:1.8; max-width:580px; margin-top:1rem; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.65s ease,transform 0.65s ease; }
+    .reveal.show { opacity:1; transform:translateY(0); }
+    .delay-1 { transition-delay:0.1s; }
+    .delay-2 { transition-delay:0.2s; }
+    .delay-3 { transition-delay:0.3s; }
+    .delay-4 { transition-delay:0.4s; }
+    .delay-5 { transition-delay:0.5s; }
+
+    /* SERVICIOS */
+    #servicios { background:var(--card); }
+    .svc-header { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:4rem; flex-wrap:wrap; }
+    .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .svc-card { background:var(--bg); border:1.5px solid var(--border); border-radius:18px; padding:2.2rem; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; cursor:default; }
+    .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--blue-light)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease; }
+    .svc-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.1); border-color:rgba(26,79,214,0.3); }
+    .svc-card:hover::before { transform:scaleX(1); }
+    .svc-num { font-family:'Syne',sans-serif; font-size:0.7rem; font-weight:800; color:rgba(26,79,214,0.4); letter-spacing:2px; margin-bottom:1.5rem; }
+    .svc-icon { font-size:2rem; margin-bottom:1.2rem; display:block; }
+    .svc-name { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:0.8rem; color:var(--dark); }
+    .svc-desc { font-size:0.85rem; color:var(--gray); line-height:1.75; }
+
+    /* GESTORÍA */
+    #gestoria { background:var(--dark); }
+    #gestoria .eyebrow { color:var(--accent); }
+    #gestoria .s-title { color:#fff; }
+    #gestoria .s-title em { color:var(--accent); }
+    #gestoria .s-sub { color:rgba(255,255,255,0.5); }
+    .gestoria-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-top:4rem; }
+    .gestoria-list { display:flex; flex-direction:column; gap:1rem; }
+    .gitem { display:flex; align-items:flex-start; gap:1.2rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:1.5rem; transition:border-color 0.3s,background 0.3s; }
+    .gitem:hover { border-color:rgba(245,166,35,0.4); background:rgba(245,166,35,0.04); }
+    .gitem-icon { font-size:1.4rem; width:48px; height:48px; border-radius:12px; background:rgba(245,166,35,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .gitem-title { color:#fff; font-weight:600; font-size:0.95rem; margin-bottom:0.35rem; }
+    .gitem-desc { color:rgba(255,255,255,0.5); font-size:0.82rem; line-height:1.65; }
+    .gestoria-right { display:flex; flex-direction:column; gap:1.5rem; }
+    .g-stat-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:2rem; text-align:center; transition:border-color 0.3s; }
+    .g-stat-card:hover { border-color:rgba(245,166,35,0.4); }
+    .g-stat-num { font-family:'Syne',sans-serif; font-size:3rem; font-weight:800; color:var(--accent); letter-spacing:-2px; line-height:1; }
+    .g-stat-label { color:rgba(255,255,255,0.5); font-size:0.82rem; margin-top:0.5rem; }
+    .g-stat-row { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .g-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); color:var(--accent); font-size:0.75rem; font-weight:600; padding:0.5rem 1rem; border-radius:100px; margin-bottom:1rem; }
+
+    /* EQUIPO */
+    #equipo { background:var(--bg); }
+    .team-header { margin-bottom:4rem; }
+    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; max-width:760px; margin:0 auto; }
+    .team-card { background:var(--card); border:1.5px solid var(--border); border-radius:18px; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.1); }
+    .team-photo { height:200px; display:flex; align-items:center; justify-content:center; font-size:3.5rem; position:relative; }
+    .photo-blue { background:linear-gradient(135deg,#e8f0ff,#cfdeff); }
+    .photo-red  { background:linear-gradient(135deg,#ffe8e8,#ffd0d0); }
+    .team-info { padding:1.5rem; }
+    .team-name { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--dark); margin-bottom:0.3rem; }
+    .team-role { font-size:0.75rem; font-weight:600; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.85rem; }
+    .team-bio { font-size:0.82rem; color:var(--gray); line-height:1.7; }
+
+    /* TESTIMONIOS */
+    #testimonios { background:var(--card); }
+    .test-header { margin-bottom:4rem; }
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .test-card { background:var(--bg); border:1.5px solid var(--border); border-radius:18px; padding:2.2rem; display:flex; flex-direction:column; transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; }
+    .test-card:hover { transform:translateY(-5px); box-shadow:0 18px 45px rgba(0,0,0,0.09); border-color:rgba(26,79,214,0.25); }
+    .test-stars { color:var(--accent); font-size:0.85rem; letter-spacing:2px; margin-bottom:1.5rem; }
+    .test-quote { font-family:'Syne',sans-serif; font-size:1rem; font-weight:600; line-height:1.65; color:var(--dark); flex:1; margin-bottom:1.8rem; }
+    .test-quote::before { content:'\201C'; color:var(--blue); font-size:2rem; line-height:0; vertical-align:-0.5rem; margin-right:0.2rem; }
+    .test-author { display:flex; align-items:center; gap:1rem; }
+    .test-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.9rem; color:#fff; flex-shrink:0; }
+    .av-blue { background:linear-gradient(135deg,var(--blue),var(--blue-light)); }
+    .av-red  { background:linear-gradient(135deg,var(--red),#e05555); }
+    .av-dark { background:linear-gradient(135deg,#333,#555); }
+    .test-name { font-weight:700; font-size:0.88rem; color:var(--dark); }
+    .test-meta { font-size:0.75rem; color:var(--gray); margin-top:0.15rem; }
+
+    /* CONTACTO */
+    #contacto { background:var(--dark); display:grid; grid-template-columns:1fr 1.2fr; gap:6rem; align-items:start; }
+    #contacto .eyebrow { color:var(--blue-light); }
+    #contacto .s-title { color:#fff; }
+    #contacto .s-sub { color:rgba(255,255,255,0.5); max-width:100%; }
+    .contact-points { margin-top:3rem; display:flex; flex-direction:column; gap:1.5rem; }
+    .cpoint { display:flex; align-items:flex-start; gap:1.2rem; }
+    .cpoint-icon { width:44px; height:44px; border-radius:12px; border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .cpoint-label { color:rgba(255,255,255,0.45); font-size:0.72rem; letter-spacing:1px; text-transform:uppercase; margin-bottom:0.3rem; }
+    .cpoint-val { color:#fff; font-size:0.93rem; line-height:1.6; }
+    .contact-form { display:flex; flex-direction:column; gap:1.2rem; }
+    .form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .fgroup { display:flex; flex-direction:column; gap:0.5rem; }
+    .fgroup label { color:rgba(255,255,255,0.6); font-size:0.78rem; letter-spacing:0.3px; }
+    .fgroup input, .fgroup select, .fgroup textarea { background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.12); border-radius:10px; color:#fff; font-family:'Outfit',sans-serif; font-size:0.9rem; padding:0.9rem 1.1rem; outline:none; resize:vertical; transition:border-color 0.3s; }
+    .fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus { border-color:var(--blue-light); }
+    .fgroup select option { background:#1a1a1a; }
+    .form-btn { background:var(--blue); color:#fff; border:none; border-radius:100px; padding:1.05rem 2.5rem; font-family:'Outfit',sans-serif; font-weight:700; font-size:0.9rem; cursor:pointer; box-shadow:0 5px 25px rgba(26,79,214,0.35); transition:background 0.3s,transform 0.25s; display:flex; align-items:center; gap:0.5rem; width:fit-content; }
+    .form-btn:hover { background:var(--blue-light); transform:translateY(-2px); }
+    .form-note { color:rgba(255,255,255,0.3); font-size:0.73rem; margin-top:0.3rem; }
+
+    /* FOOTER */
+    footer { background:#060606; padding:2.5rem 6%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; border-top:1px solid rgba(255,255,255,0.07); }
+    .footer-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; }
+    .footer-logo span { color:var(--blue); }
+    .footer-copy { color:rgba(255,255,255,0.3); font-size:0.78rem; }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { color:rgba(255,255,255,0.35); font-size:0.78rem; text-decoration:none; transition:color 0.3s; }
+    .footer-links a:hover { color:var(--blue-light); }
+
+    /* WHATSAPP */
+    .wa-btn { position:fixed; bottom:2rem; right:2rem; z-index:400; width:58px; height:58px; border-radius:50%; background:#25d366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.7rem; text-decoration:none; box-shadow:0 5px 25px rgba(37,211,102,0.45); transition:transform 0.3s; animation:waPop 0.5s 1s ease both; }
+    .wa-btn:hover { transform:scale(1.12); }
+    @keyframes waPop { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+
+    /* RESPONSIVE */
+    @media (max-width:1024px) {
+      .svc-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-right { display:none; }
+      .gestoria-layout { grid-template-columns:1fr; gap:3rem; }
+      .test-grid { grid-template-columns:1fr; max-width:480px; }
+      #contacto { grid-template-columns:1fr; gap:3.5rem; }
+      .form-row2 { grid-template-columns:1fr; }
+      nav { padding:1rem 5%; }
+      .nav-menu { display:none; }
+      .hamburger { display:flex; }
+    }
+    @media (max-width:600px) {
+      section { padding:5rem 5%; }
+      .svc-grid { grid-template-columns:1fr; }
+      .team-grid { grid-template-columns:1fr; max-width:100%; }
+      .hero-stats { flex-direction:column; gap:1.5rem; }
+      .stat-item { border-right:none; padding-left:0; border-bottom:1px solid var(--border); padding-bottom:1.5rem; }
+      .stat-item:last-child { border-bottom:none; padding-bottom:0; }
+      .g-stat-row { grid-template-columns:1fr; }
+      footer { flex-direction:column; text-align:center; }
+    }
+    .nav-open .nav-menu { display:flex; flex-direction:column; position:fixed; top:60px; left:0; right:0; background:rgba(247,245,240,0.98); backdrop-filter:blur(16px); padding:2rem; gap:1.5rem; border-bottom:1px solid var(--border); align-items:flex-start; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="logo"><img src="data:image/jpeg;base64,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MTHvRTuaQ5ouKwlFFGKYWCiiigYCjNFFABRRRQAUopKKQC/rRn2pKKACikpakAooooAKKKKACikpaYBRRRTAKKKKYBRRRj3pAFFFFMAooopAFFFL0oAB9KWm0ooAX8KDSUUgFx7UmPal/GkoAWikzSUAOpMUgpTTAPwopKKAHCkP0pKKACiiigAopTSUwCiiikAUUUUrgFFFFUAUUUUgCiiipEFFITiloGFFFFABRRRQAUUUUAFAooFAC8UZpDRQAUUUUwClpKMUgClakoqkAUUUUwHUlH+etFT1AOaSiimAUUUvWgBBS0lFAAaKKKYBRRS/hSAMe1HSjNJRuAUUUUwCgUUVLAWkoopAFFFFO4BSgUZo/D9aAEpKDTcmgBTQKSimA+im5pakBaKSloASloooAKKKKACikpaACiiigAoopKAFopKWgAoooqgCiiimAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFIAoooqQCiiigAoooqgG9KSnUhFJAJRRRQAU6min0AJz6UtFFIAooopgFFFFPoAUUUCpAKKKKACiiigAooopgFFFFUAUUUUgCilNJQAUUUUwCiiikAUUtJQAUUUUwCigUtACUUUUAFFFFIAoooqQCiiigAoooqgCmtmlopIBtFO20tFwGrTqKKQBRR+FFVYAoooxTAKKWikAf560lFFFgCiiiiwBRRRx6UWAKKKKACijFLj1oATFL6UcfSjipAX8KT8KWincBMe1LRRSAKKKKACk20tGKAG4pce1Lj3op3AT8KPwpcUYpAJ+FJTse9GKdwG0tFGaAEooop2AKKKKLAFKOKSlFFgGtQOlFFIBaKKKACiiimAU6iimAUg70UUgFpGoopAJTqKKYDaKKKYBRRRQAUo70UUALSfxUUVAC0UUUAFFFFABRRRQAUUUUAItLRRQAUUUUAFFFFABRRRQAU2iimgCiiiqAKKKKQBSrRRQB//2Q==" alt="Enciso Abogados" style="height:42px;width:auto;display:block;"></a>
+  <ul class="nav-menu" id="nav-menu">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#gestoria">Gestoría</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto" class="nav-btn">Consulta Gratuita</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-left">
+    <div style="margin-bottom:2rem;">
+      <img src="data:image/jpeg;base64,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MTHvRTuaQ5ouKwlFFGKYWCiiigYCjNFFABRRRQAUopKKQC/rRn2pKKACikpakAooooAKKKKACikpaYBRRRTAKKKKYBRRRj3pAFFFFMAooopAFFFL0oAB9KWm0ooAX8KDSUUgFx7UmPal/GkoAWikzSUAOpMUgpTTAPwopKKAHCkP0pKKACiiigAopTSUwCiiikAUUUUrgFFFFUAUUUUgCiiipEFFITiloGFFFFABRRRQAUUUUAFAooFAC8UZpDRQAUUUUwClpKMUgClakoqkAUUUUwHUlH+etFT1AOaSiimAUUUvWgBBS0lFAAaKKKYBRRS/hSAMe1HSjNJRuAUUUUwCgUUVLAWkoopAFFFFO4BSgUZo/D9aAEpKDTcmgBTQKSimA+im5pakBaKSloASloooAKKKKACikpaACiiigAoopKAFopKWgAoooqgCiiimAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFIAoooqQCiiigAoooqgG9KSnUhFJAJRRRQAU6min0AJz6UtFFIAooopgFFFFPoAUUUCpAKKKKACiiigAooopgFFFFUAUUUUgCilNJQAUUUUwCiiikAUUtJQAUUUUwCigUtACUUUUAFFFFIAoooqQCiiigAoooqgCmtmlopIBtFO20tFwGrTqKKQBRR+FFVYAoooxTAKKWikAf560lFFFgCiiiiwBRRRx6UWAKKKKACijFLj1oATFL6UcfSjipAX8KT8KWincBMe1LRRSAKKKKACk20tGKAG4pce1Lj3op3AT8KPwpcUYpAJ+FJTse9GKdwG0tFGaAEooop2AKKKKLAFKOKSlFFgGtQOlFFIBaKKKACiiimAU6iimAUg70UUgFpGoopAJTqKKYDaKKKYBRRRQAUo70UUALSfxUUVAC0UUUAFFFFABRRRQAUUUUAItLRRQAUUUUAFFFFABRRRQAU2iimgCiiiqAKKKKQBSrRRQB//2Q==" alt="Enciso Abogados" style="height:auto;width:340px;display:block;">
+    </div>
+    <div class="hero-badge"><span class="badge-dot"></span> Despacho Jurídico Laboral · México</div>
+    <h1>
+      Defendemos<br>
+      <span class="h1-blue">tus derechos</span>
+      <span class="h1-red">laborales.</span>
+    </h1>
+    <p class="hero-desc">Más de 15 años representando a trabajadores y empresas en conflictos laborales, seguridad social y gestoría de trámites gubernamentales en toda la República Mexicana.</p>
+    <div class="hero-ctas">
+      <a href="javascript:void(0)" class="btn-primary">Consulta sin costo a trabajadores →</a>
+      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1,400<span>+</span></div>
+        <div class="stat-text">Casos resueltos exitosamente</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">15</div>
+        <div class="stat-text">Años de experiencia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">97<span>%</span></div>
+        <div class="stat-text">Tasa de éxito en litigios</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hcard">
+      <div class="hcard-header">
+        <div class="hcard-icon ic-blue">⚖️</div>
+        <div class="hcard-title">Representación Laboral Integral</div>
+      </div>
+      <div class="hcard-body">Defensa profesional ante Juntas de Conciliación, Tribunales Laborales e instancias federales. Cubrimos todo el proceso desde la demanda hasta la ejecución del laudo.</div>
+      <div class="hcard-tags">
+        <span class="htag">LFT</span>
+        <span class="htag">IMSS</span>
+        <span class="htag">INFONAVIT</span>
+        <span class="htag">STPS</span>
+        <span class="htag">Huelgas</span>
+      </div>
+    </div>
+    <div class="hcard-row">
+      <div class="hmini">
+        <span class="hmini-icon">🏛️</span>
+        <div class="hmini-text">Gestoría Gubernamental Certificada</div>
+      </div>
+      <div class="hmini">
+        <span class="hmini-icon">🤝</span>
+        <div class="hmini-text">Conciliación y Mediación CNCM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="svc-header">
+    <div>
+      <div class="eyebrow reveal">Áreas de práctica</div>
+      <h2 class="s-title reveal delay-1">Servicios <em>jurídicos</em><br>especializados</h2>
+    </div>
+    <p class="s-sub reveal delay-2" style="max-width:380px;">Soluciones legales completas y estratégicas para trabajadores, sindicatos y empresas en materia laboral mexicana.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">⚖️</span>
+      <div class="svc-name">Litigio Laboral</div>
+      <p class="svc-desc">Representación ante Juntas de Conciliación y Arbitraje, Tribunales Laborales y Cortes de Apelación. Demandas por despido injustificado, liquidaciones y reinstalaciones.</p>
+    </div>
+    <div class="svc-card reveal delay-1">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">🤝</span>
+      <div class="svc-name">Conciliación y Mediación</div>
+      <p class="svc-desc">Resolución ágil de conflictos laborales mediante acuerdos antes del juicio. Ahorra tiempo y costos. Certificados por el Centro Nacional de Conciliación y Mediación.</p>
+    </div>
+    <div class="svc-card reveal delay-2">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">📋</span>
+      <div class="svc-name">Contratos Colectivos</div>
+      <p class="svc-desc">Elaboración, revisión y negociación de contratos colectivos de trabajo (CCT). Revisión salarial y asesoría sindical conforme a la Ley Federal del Trabajo vigente.</p>
+    </div>
+    <div class="svc-card reveal delay-1">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">🏥</span>
+      <div class="svc-name">Seguridad Social</div>
+      <p class="svc-desc">Trámites y controversias ante IMSS e INFONAVIT. Pensiones por invalidez, vejez, incapacidad y riesgos de trabajo. Defensa en auditorías de seguridad social.</p>
+    </div>
+    <div class="svc-card reveal delay-2">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">🏢</span>
+      <div class="svc-name">Asesoría Empresarial</div>
+      <p class="svc-desc">Diagnóstico laboral preventivo, auditorías de plantilla, reglamentos internos y políticas de empresa para minimizar riesgos legales y optimizar relaciones laborales.</p>
+    </div>
+    <div class="svc-card reveal delay-3">
+      <div class="svc-num">06</div>
+      <span class="svc-icon">🔄</span>
+      <div class="svc-name">Outsourcing y REPSE</div>
+      <p class="svc-desc">Asesoría especializada en el régimen de subcontratación. Regularización, registro REPSE, cumplimiento y transición conforme a la reforma laboral 2021 y sus actualizaciones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GESTORÍA -->
+<section id="gestoria">
+  <div class="eyebrow reveal">Trámites oficiales</div>
+  <h2 class="s-title reveal delay-1">Gestoría de Trámites<br><em>Gubernamentales</em></h2>
+  <p class="s-sub reveal delay-2">Facilitamos y agilizamos todos los trámites ante dependencias oficiales. Nuestros gestores certificados se encargan del proceso completo para que usted se enfoque en lo que importa.</p>
+  <div class="gestoria-layout">
+    <div class="gestoria-list">
+      <div class="gitem reveal">
+        <div class="gitem-icon">🏛️</div>
+        <div>
+          <div class="gitem-title">IMSS e INFONAVIT</div>
+          <div class="gitem-desc">Altas, bajas y modificaciones de salario. Trámites de pensión, créditos INFONAVIT, aclaraciones de semanas cotizadas y resolución de inconsistencias en NSS.</div>
+        </div>
+      </div>
+      <div class="gitem reveal delay-1">
+        <div class="gitem-icon">📑</div>
+        <div>
+          <div class="gitem-title">STPS — Secretaría del Trabajo</div>
+          <div class="gitem-desc">Registro sindical, depósito de contratos colectivos, toma de nota de directivas sindicales, consultas y recursos ante la Secretaría del Trabajo y Previsión Social.</div>
+        </div>
+      </div>
+      <div class="gitem reveal delay-2">
+        <div class="gitem-icon">🔐</div>
+        <div>
+          <div class="gitem-title">SAT — Aspectos Laborales</div>
+          <div class="gitem-desc">Cumplimiento fiscal laboral, declaraciones de nómina, comprobantes de pago CFDI, validación de contratos y atención a requerimientos del SAT en materia de sueldos.</div>
+        </div>
+      </div>
+      <div class="gitem reveal delay-3">
+        <div class="gitem-icon">🏗️</div>
+        <div>
+          <div class="gitem-title">REPSE</div>
+          <div class="gitem-desc">Registro, renovación y actualización en el Registro de Prestadoras de Servicios u Obras Especializadas. Asesoramos a empresas en el proceso completo de registro, cumplimiento de requisitos y renovación periódica conforme a la reforma laboral vigente.</div>
+        </div>
+      </div>
+    </div>
+    <div class="gestoria-right">
+      <div class="g-badge reveal">✅ Gestores certificados ante dependencias federales</div>
+      <div class="g-stat-card reveal delay-1">
+        <div class="g-stat-num">72<span style="font-size:1.5rem">hrs</span></div>
+        <div class="g-stat-label">Tiempo promedio de resolución de trámites urgentes</div>
+      </div>
+      <div class="g-stat-row">
+        <div class="g-stat-card reveal delay-2">
+          <div class="g-stat-num">500<span style="font-size:1.2rem">+</span></div>
+          <div class="g-stat-label">Trámites exitosos por año</div>
+        </div>
+        <div class="g-stat-card reveal delay-3">
+          <div class="g-stat-num">32</div>
+          <div class="g-stat-label">Estados de la República con cobertura</div>
+        </div>
+      </div>
+      <div class="gitem reveal delay-4" style="border-color:rgba(245,166,35,0.25);">
+        <div class="gitem-icon">🚀</div>
+        <div>
+          <div class="gitem-title">Seguimiento digital en tiempo real</div>
+          <div class="gitem-desc">Reportes periódicos del estatus de cada trámite vía WhatsApp y correo electrónico. Transparencia total en cada etapa del proceso.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="team-header">
+    <div class="eyebrow reveal">Nuestros abogados</div>
+    <h2 class="s-title reveal delay-1">El equipo detrás de<br><em>cada victoria</em></h2>
+    <p class="s-sub reveal delay-2">Profesionales con experiencia real en litigio, especializados en cada área del derecho laboral mexicano.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo photo-blue">⚖️</div>
+      <div class="team-info">
+        <div class="team-name">Mtro. Israel Enciso Rebollo</div>
+        <div class="team-role">Fundador · Litigante Senior</div>
+        <div class="team-bio">Maestro en Derecho Laboral. Fundador del despacho con amplia experiencia en litigio laboral, representación ante Juntas de Conciliación y defensa integral de trabajadores y empresas.</div>
+      </div>
+    </div>
+    <div class="team-card reveal delay-1">
+      <div class="team-photo photo-red">🏛️</div>
+      <div class="team-info">
+        <div class="team-name">Lic. Isabel P. Arroyo Delgadillo</div>
+        <div class="team-role">Socia · Litigante · Seguridad Social</div>
+        <div class="team-bio">Licenciada en Derecho. Especialista en seguridad privada y seguridad social. Representación de clientes ante el IMSS, ISSSTE e instancias de seguridad y vigilancia privada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="test-header">
+    <div class="eyebrow reveal">Lo que dicen nuestros clientes</div>
+    <h2 class="s-title reveal delay-1">Casos de <em>éxito reales</em></h2>
+    <p class="s-sub reveal delay-2">La confianza de quienes defendemos es nuestra mayor motivación.</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">Después de 10 años en la empresa me despidieron sin pagarme todo. Enciso Abogados logró que recuperara cada peso que me correspondía, más una indemnización completa. Muy profesionales.</div>
+      <div class="test-author">
+        <div class="test-avatar av-blue">MR</div>
+        <div>
+          <div class="test-name">Miguel R.</div>
+          <div class="test-meta">Despido injustificado · Hidalgo</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal delay-1">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">Nuestra empresa enfrentaba una huelga inminente. En dos semanas el equipo logró una conciliación exitosa para ambas partes. Su estrategia fue precisa y efectiva desde el primer día.</div>
+      <div class="test-author">
+        <div class="test-avatar av-red">LP</div>
+        <div>
+          <div class="test-name">Laura P.</div>
+          <div class="test-meta">Conciliación laboral · Pachuca</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal delay-2">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">Tres años batallando con el IMSS por mi pensión por invalidez. El despacho resolvió mi caso en 8 meses. Jamás pensé que lo lograría. Les estaré eternamente agradecido.</div>
+      <div class="test-author">
+        <div class="test-avatar av-dark">JV</div>
+        <div>
+          <div class="test-name">José V.</div>
+          <div class="test-meta">Pensión por invalidez · Mineral de la Reforma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div>
+    <div class="eyebrow reveal">Contáctenos</div>
+    <h2 class="s-title reveal delay-1">Primera consulta<br><em>sin costo</em></h2>
+    <p class="s-sub reveal delay-2">Cuéntenos su caso y uno de nuestros especialistas lo orientará con total confidencialidad, sin compromiso.</p>
+    <div class="contact-points">
+      <div class="cpoint reveal delay-1">
+        <div class="cpoint-icon">📍</div>
+        <div>
+          <div class="cpoint-label">Oficina principal</div>
+          <div class="cpoint-val">Fracc. Villa San Cristóbal, Calle Villa la Esperanza #104<br>C.P. 42186, Mineral de la Reforma, Hidalgo</div>
+        </div>
+      </div>
+      <div class="cpoint reveal delay-2" style="margin-top:0;">
+        <div class="cpoint-icon">📌</div>
+        <div>
+          <div class="cpoint-label">Atención</div>
+          <div class="cpoint-val">Presencial y Virtual en Todo México</div>
+        </div>
+      </div>
+      <div class="cpoint reveal delay-2">
+        <div class="cpoint-icon">🏢</div>
+        <div>
+          <div class="cpoint-label">Sucursales</div>
+          <div class="cpoint-val">Alcaldía Cuauhtémoc, Ciudad de México</div>
+        </div>
+      </div>
+      <div class="cpoint reveal delay-2">
+        <div class="cpoint-icon">📞</div>
+        <div>
+          <div class="cpoint-label">Teléfonos</div>
+          <div class="cpoint-val">81 4820 3979<br>77 1659 6226</div>
+        </div>
+      </div>
+      <div class="cpoint reveal delay-3">
+        <div class="cpoint-icon">✉️</div>
+        <div>
+          <div class="cpoint-label">Correo electrónico</div>
+          <div class="cpoint-val">encisoabogados1@gmail.com</div>
+        </div>
+      </div>
+      <div class="cpoint reveal delay-4">
+        <div class="cpoint-icon">🕐</div>
+        <div>
+          <div class="cpoint-label">Horario de atención</div>
+          <div class="cpoint-val">Lunes – Viernes: 9:00 – 19:00 hrs · Sábados: 9:00 – 14:00 hrs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal delay-2">
+    <form class="contact-form" action="https://formspree.io/f/mnjezlkv" method="POST">
+      <div class="form-row2">
+        <div class="fgroup">
+          <label>Nombre completo *</label>
+          <input type="text" name="nombre" placeholder="Ej. Ana García López" required />
+        </div>
+        <div class="fgroup">
+          <label>Teléfono *</label>
+          <input type="tel" name="telefono" placeholder="77 1234 5678" required />
+        </div>
+      </div>
+      <div class="fgroup">
+        <label>Correo electrónico *</label>
+        <input type="email" name="email" placeholder="correo@ejemplo.com" required />
+      </div>
+      <div class="fgroup">
+        <label>Tipo de caso</label>
+        <select name="tipo_de_caso">
+          <option value="">Seleccione una opción…</option>
+          <option>Despido injustificado</option>
+          <option>Liquidación y finiquito</option>
+          <option>Pensión IMSS / ISSSTE</option>
+          <option>Accidente o enfermedad de trabajo</option>
+          <option>Contrato colectivo / Sindicato</option>
+          <option>Asesoría empresarial</option>
+          <option>Outsourcing / REPSE</option>
+          <option>Gestoría de trámite gubernamental</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label>Describa su situación *</label>
+        <textarea name="mensaje" rows="5" placeholder="Cuéntenos brevemente los detalles de su caso para poder orientarle mejor…" required></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="Nueva solicitud de consulta — Enciso Abogados" />
+      <input type="hidden" name="_language" value="es" />
+      <button type="submit" class="form-btn">Enviar solicitud →</button>
+      <p class="form-note">🔒 Sus datos son estrictamente confidenciales. Respondemos en menos de 24 horas hábiles.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Enciso <span>Abogados</span></div>
+  <div class="footer-copy">© 2025 Enciso Abogados · Todos los derechos reservados · Mineral de la Reforma, Hidalgo</div>
+  <div class="footer-links">
+    <a href="#">Aviso de Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a class="wa-btn" href="https://wa.me/528148203979?text=Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita%20sobre%20mi%20caso%20laboral." target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+<script>
+  // Scroll Reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('show'); revealObs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // Mobile Nav
+  const hamburger = document.getElementById('hamburger');
+  const navbar = document.getElementById('navbar');
+  hamburger.addEventListener('click', () => navbar.classList.toggle('nav-open'));
+  document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', () => navbar.classList.remove('nav-open')));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 30 ? '0 4px 20px rgba(0,0,0,0.08)' : '';
+  });
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = '✅ Solicitud enviada. Le contactaremos pronto.';
+    btn.style.background = '#1ab85c';
+    btn.disabled = true;
+  }
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue)' : '';
+      a.style.fontWeight = a.getAttribute('href') === '#' + current ? '600' : '';
+    });
+  });
+
+  // Counter animation
+  function animateCounters() {
+    document.querySelectorAll('.stat-num').forEach(el => {
+      const html = el.innerHTML;
+      const num = parseInt(html.replace(/\D/g,''));
+      const suffix = html.replace(/[\d,]/g,'');
+      let count = 0;
+      const step = Math.ceil(num / 60);
+      const timer = setInterval(() => {
+        count = Math.min(count + step, num);
+        el.innerHTML = count.toLocaleString() + suffix;
+        if (count >= num) clearInterval(timer);
+      }, 25);
+    });
+  }
+  const statsSection = document.querySelector('.hero-stats');
+  if (statsSection) {
+    const statsObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { animateCounters(); statsObs.disconnect(); }
+    }, { threshold: 0.5 });
+    statsObs.observe(statsSection);
+  }
+</script>
+</body>
+</html>
