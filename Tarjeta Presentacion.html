@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<title>Lic. Israel Enciso Rebollo — Enciso Abogados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050505;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 24px 16px;
+  }
+
+  /* ── CARD ── */
+  .biz-card {
+    width: 100%;
+    max-width: 380px;
+    background: #0a0a0a;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 0.5px solid #222;
+  }
+
+  .card-top-line {
+    height: 2px;
+    background: linear-gradient(90deg, #7a6020 0%, #b8953a 30%, #e8c96e 50%, #b8953a 70%, #7a6020 100%);
+  }
+
+  .card-body {
+    padding: 28px 28px 20px;
+  }
+
+  /* ── LOGO ── */
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .logo-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .bar {
+    background: #b8953a;
+    height: 1.5px;
+    border-radius: 2px;
+  }
+
+  .bar:nth-child(1) { width: 18px; }
+  .bar:nth-child(2) { width: 13px; }
+
+  .logo-chevron {
+    color: #b8953a;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    margin-top: -2px;
+  }
+
+  .logo-divider {
+    width: 0.5px;
+    height: 30px;
+    background: #2a2a2a;
+  }
+
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .firm-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #e8e0d0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .firm-sub {
+    font-size: 8px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAME ── */
+  .separator-line {
+    width: 100%;
+    height: 0.5px;
+    background: #1e1e1e;
+    margin-bottom: 20px;
+  }
+
+  .contact-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #e8e0d0;
+    letter-spacing: 0.01em;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .contact-title {
+    font-size: 8.5px;
+    font-weight: 400;
+    color: #b8953a;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  /* ── ACTION BUTTONS ── */
+  .actions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 0.5px solid #222;
+    background: #0f0f0f;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.25s, background 0.25s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .action-btn:hover {
+    border-color: #b8953a;
+    background: #141408;
+  }
+
+  .action-btn:active {
+    transform: scale(0.982);
+  }
+
+  .btn-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-icon.phone  { background: #161610; border: 0.5px solid #2a2a1a; }
+  .btn-icon.whatsapp { background: #0b1a10; border: 0.5px solid #1a3325; }
+  .btn-icon.email  { background: #10121a; border: 0.5px solid #1a1d30; }
+  .btn-icon.nfc    { background: #0d1520; border: 0.5px solid #1a2535; }
+
+  .btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .btn-label {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #ccc5b5;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-detail {
+    font-size: 10px;
+    color: #484848;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .btn-arrow {
+    flex-shrink: 0;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .action-btn:hover .btn-arrow svg { stroke: #b8953a; }
+  .action-btn:hover .btn-arrow { transform: translateX(2px); }
+
+  /* ── FOOTER ── */
+  .card-footer {
+    border-top: 0.5px solid #171717;
+    padding: 13px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-note {
+    font-size: 9px;
+    color: #383838;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .gold-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #b8953a;
+    opacity: 0.5;
+  }
+
+  .nfc-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #0d1520;
+    border: 0.5px solid #1a2535;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 8.5px;
+    color: #4a9fd4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nfc-pulse {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #4a9fd4;
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.65); }
+  }
+
+  /* ── NFC INSTRUCTIONS MODAL ── */
+  .nfc-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .nfc-modal-overlay.visible { display: flex; }
+
+  .nfc-modal {
+    background: #0f0f0f;
+    border: 0.5px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 340px;
+    width: 100%;
+  }
+
+  .nfc-modal h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #e8e0d0;
+    margin-bottom: 6px;
+  }
+
+  .nfc-modal p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .nfc-modal .url-box {
+    background: #151515;
+    border: 0.5px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 10.5px;
+    color: #b8953a;
+    letter-spacing: 0.04em;
+    word-break: break-all;
+    margin-bottom: 16px;
+    cursor: pointer;
+    user-select: all;
+  }
+
+  .nfc-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .nfc-steps li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: #b8953a;
+    font-weight: 500;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .step-text {
+    font-size: 10.5px;
+    color: #888;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  .nfc-write-btn {
+    width: 100%;
+    padding: 13px;
+    background: #0d1520;
+    border: 0.5px solid #1a2535;
+    border-radius: 8px;
+    color: #4a9fd4;
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 10px;
+  }
+
+  .nfc-write-btn:hover:not(:disabled) {
+    border-color: #4a9fd4;
+    background: #101a26;
+  }
+
+  .nfc-write-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .nfc-write-status {
+    font-size: 10.5px;
+    color: #888;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+    min-height: 14px;
+  }
+
+  .modal-close {
+    width: 100%;
+    padding: 11px;
+    background: transparent;
+    border: 0.5px solid #2a2a2a;
+    border-radius: 8px;
+    color: #888;
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .modal-close:hover {
+    border-color: #b8953a;
+    color: #b8953a;
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="biz-card" role="main" aria-label="Tarjeta de presentación de Lic. Israel Enciso Rebollo">
+
+    <div class="card-top-line"></div>
+
+    <div class="card-body">
+
+      <!-- LOGO -->
+      <div class="logo-area">
+        <div class="logo-mark">
+          <div class="logo-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <span class="logo-chevron">∧</span>
+        </div>
+        <div class="logo-divider"></div>
+        <div class="logo-text-group">
+          <span class="firm-name">Enciso Abogados</span>
+          <span class="firm-sub">Asesoría Legal</span>
+        </div>
+      </div>
+
+      <div class="separator-line"></div>
+
+      <!-- NAME -->
+      <p class="contact-name">Lic. Israel Enciso Rebollo</p>
+      <p class="contact-title">Abogado &amp; Asesor Empresarial</p>
+
+      <!-- ACTIONS -->
+      <div class="actions-grid">
+
+        <!-- LLAMAR -->
+        <a href="tel:8148203979" class="action-btn" aria-label="Llamar al 81 4820 3979">
+          <div class="btn-icon phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#b8953a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Llamar</span>
+            <span class="btn-detail">81 4820 3979</span>
+          </div>
+          <span class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- WHATSAPP -->
+        <a href="https://wa.me/528148203979?text=Hola%20Lic.%20Israel%2C%20me%20gustar%C3%ADa%20consultar%20sobre%20sus%20servicios%20legales." class="action-btn" target="_blank" rel="noopener" aria-label="Consulta directa por WhatsApp">
+          <div class="btn-icon whatsapp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+            </svg>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">WhatsApp</span>
+            <span class="btn-detail">Consulta directa</span>
+          </div>
+          <span class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- EMAIL -->
+        <a href="mailto:encisoabogados1@gmail.com" class="action-btn" aria-label="Enviar correo electrónico">
+          <div class="btn-icon email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7a9fd4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Correo electrónico</span>
+            <span class="btn-detail">encisoabogados1@gmail.com</span>
+          </div>
+          <span class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- NFC -->
+        <button class="action-btn" onclick="handleNfcClick()" aria-label="Compartir por NFC">
+          <div class="btn-icon nfc">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4a9fd4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>
+            </svg>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Compartir por NFC</span>
+            <span class="btn-detail">Ver instrucciones</span>
+          </div>
+          <span class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <span class="footer-note">Monterrey, México</span>
+      <div class="gold-dot"></div>
+      <div class="nfc-pill">
+        <div class="nfc-pulse"></div>
+        NFC Ready
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- NFC MODAL -->
+<div class="nfc-modal-overlay" id="nfcModal" role="dialog" aria-modal="true" aria-label="Instrucciones NFC" onclick="if(event.target===this)this.classList.remove('visible')">
+  <div class="nfc-modal">
+    <h2>Compartir por NFC</h2>
+
+    <!-- WRITE DIRECTLY FROM BROWSER (shown when Web NFC is supported) -->
+    <div id="nfcWriteSection" style="display:none;">
+      <p>Tu teléfono puede grabar la etiqueta directamente desde aquí, sin apps extra.</p>
+
+      <div class="url-box" id="cardUrl">—</div>
+
+      <button class="nfc-write-btn" id="nfcWriteBtn" onclick="writeNfcTag()">Grabar tag ahora</button>
+      <p class="nfc-write-status" id="nfcWriteStatus"></p>
+    </div>
+
+    <!-- FALLBACK INSTRUCTIONS (shown when Web NFC is not supported, e.g. iPhone) -->
+    <div id="nfcInstructionsSection" style="display:none;">
+      <p>Tu navegador no permite grabar tags NFC directamente. Puedes hacerlo con una app gratuita:</p>
+
+      <div class="url-box" title="Toca para seleccionar la URL" id="cardUrlFallback">—</div>
+
+      <ul class="nfc-steps">
+        <li>
+          <span class="step-num">01</span>
+          <span class="step-text">Copia la URL de arriba (ya es la de esta tarjeta).</span>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <span class="step-text">Descarga la app <strong style="color:#ccc">NFC Tools</strong> (iOS / Android). Es gratuita.</span>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <span class="step-text">En la app, ve a <em style="color:#ccc">Write → Add a record → URL</em> y pega la URL.</span>
+        </li>
+        <li>
+          <span class="step-num">04</span>
+          <span class="step-text">Acerca tu teléfono a un tag NFC en blanco y pulsa <em style="color:#ccc">Write</em>. ¡Listo!</span>
+        </li>
+      </ul>
+    </div>
+
+    <button class="modal-close" onclick="document.getElementById('nfcModal').classList.remove('visible')">Cerrar</button>
+  </div>
+</div>
+
+<script>
+  function handleNfcClick() {
+    const currentUrl = window.location.href;
+    const supported = 'NDEFReader' in window;
+
+    document.getElementById('nfcWriteSection').style.display = supported ? 'block' : 'none';
+    document.getElementById('nfcInstructionsSection').style.display = supported ? 'none' : 'block';
+
+    const isPlaceholder = currentUrl.startsWith('file:') || currentUrl.includes('/mnt/');
+    const displayUrl = isPlaceholder ? '— Sube este archivo a tu hosting para obtener una URL —' : currentUrl;
+
+    document.getElementById('cardUrl').textContent = displayUrl;
+    document.getElementById('cardUrlFallback').textContent = displayUrl;
+
+    document.getElementById('nfcWriteStatus').textContent = '';
+    document.getElementById('nfcModal').classList.add('visible');
+  }
+
+  async function writeNfcTag() {
+    const statusEl = document.getElementById('nfcWriteStatus');
+    const btn = document.getElementById('nfcWriteBtn');
+    const url = window.location.href;
+
+    if (url.startsWith('file:') || url.includes('/mnt/')) {
+      statusEl.textContent = 'Primero sube este archivo a un hosting con HTTPS (GitHub Pages, Netlify, etc.).';
+      statusEl.style.color = '#e0b05a';
+      return;
+    }
+
+    try {
+      btn.disabled = true;
+      statusEl.textContent = 'Acerca una etiqueta NFC en blanco a tu teléfono...';
+      statusEl.style.color = '#888';
+
+      const ndef = new NDEFReader();
+      await ndef.write({ records: [{ recordType: 'url', data: url }] });
+
+      statusEl.textContent = '✓ ¡Etiqueta grabada con éxito!';
+      statusEl.style.color = '#25d366';
+    } catch (error) {
+      statusEl.textContent = 'No se pudo grabar: ' + (error.message || 'inténtalo de nuevo.');
+      statusEl.style.color = '#e05a5a';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
